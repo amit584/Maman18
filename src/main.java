@@ -44,8 +44,6 @@ public class main {
                 Subscription p = h.getMax();
                 System.out.println(p.getName() + "(" + p.getId() +  ") with " + p.getNumOfBooks() + " books");
             }
-        }else {
-            System.out.println("Something's not right, please try again. Note the spaces and spelling in the request");
         }
     }
 

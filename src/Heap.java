@@ -86,12 +86,12 @@ public class Heap {
         int l = left(i);
         int r = right(i);
         int max;
-        if (l < currSize && heap[l].getNumOfBooks() < heap[i].getNumOfBooks()){
+        if (l < currSize && heap[l].getNumOfBooks() > heap[i].getNumOfBooks()){
             max = l;
         } else {
             max = i;
         }
-        if(r < currSize && heap[r].getNumOfBooks() < heap[max].getNumOfBooks()){
+        if(r < currSize && heap[r].getNumOfBooks() > heap[max].getNumOfBooks()){
             max = r;
         }
         if (max != i){
