@@ -24,7 +24,10 @@ public class Subscription {
     }
 
 
-    //methods
+    // Input: book, hashtable, heap
+    // Output: if no more than 10 books, book is added to list of books, corrects heap. else - error message
+    // Running Time: O(1) insert book in start of list, set reader for book, change numOfBooks + O(log n) for
+    //heapIncreaseKey
     public void checkoutBook (Book book, Hashtable table, Heap heap){
         if(numOfBooks < 10){
             if(books == null){
@@ -43,6 +46,9 @@ public class Subscription {
         }
     }
 
+    // Input: book, hashtable, heap
+    // Output: removes input book from list of books, corrects heap if needed and set reader of book to null
+    // Running Time: O(n) to remove book from list + O(1) change numOfBooks, set reader for book + O(log n) for heapify
     public void checkinBook(Book book, Hashtable hashtable, Heap heap) {
         books.remove(book);
         numOfBooks -= 1;
@@ -50,6 +56,9 @@ public class Subscription {
         hashtable.GetBook(book.getCode()).setReader(null);
     }
 
+    // Input:
+    // Output: list of books for this subscription
+    // Running Time: O(n) where n is length of list (numberOfBooks)
     public void printBooks(){
         if(numOfBooks == 0 ){
             System.out.println("There are no books for this subscription");
