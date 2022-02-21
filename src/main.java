@@ -11,6 +11,7 @@ public class main {
     public static final int bookCode = 6;
     public static final int id = 9;
 
+    //receiving the request from user and calling the needed functions
     public static void getReq(String[] reqsplit, Hashtable hashtable, Heap h) {
         if (reqsplit.length == subscription) {
             if (reqsplit[first].equals("+")) {
@@ -50,9 +51,11 @@ public class main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        //heap implementation with array, final size needed.
         System.out.println("enter max number of subscription in library :");
         int count = sc.nextInt();
         sc.nextLine(); // read \n
+        //creating heap and hashtable to store information
         Heap h = new Heap(count);
         Hashtable hashtable = new Hashtable();
         System.out.println("enter request (to exit enter X) :");
