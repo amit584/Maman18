@@ -8,14 +8,13 @@ public class main {
     public static final int second = 1;
     public static final int third = 2;
     public static final int fourth = 3;
+    public static final int bookCode = 6;
+    public static final int id = 9;
 
-
-
-
-    public static void getReq(String[] reqsplit, Hashtable hashtable, Heap h){
-        if(reqsplit.length == checkBook) {
+    public static void getReq(String[] reqsplit, Hashtable hashtable, Heap h) {
+        if (reqsplit.length == subscription) {
             if (reqsplit[first].equals("+")) {
-                Person p1 = new Person(reqsplit[second], Integer.parseInt(reqsplit[third]));
+                Subscription p1 = new Subscription(reqsplit[second], Integer.parseInt(reqsplit[third]));
                 h.add(p1);
             }
             if (reqsplit[first].equals("-")) {
@@ -23,30 +22,32 @@ public class main {
                 h.Delete(place);
             }
         }
-        if(reqsplit.length == subscription){
-            if(reqsplit[fourth].equals("+")){
+        if (reqsplit.length == checkBook) {
+            if (reqsplit[fourth].equals("+")) {
                 Book b = new Book(reqsplit[third]);
                 int place = h.getIndex(Integer.parseInt(reqsplit[second]));
-                h.getHeap()[place].checkoutBook(b,hashtable,h);
+                h.getHeap()[place].checkoutBook(b, hashtable, h);
             }
-            if(reqsplit[fourth].equals("-")) {
+            if (reqsplit[fourth].equals("-")) {
                 int place = h.getIndex(Integer.parseInt(reqsplit[second]));
                 Book b = hashtable.GetBook(reqsplit[third]);
-                h.getHeap()[place].checkinBook(b, hashtable);
+                h.getHeap()[place].checkinBook(b, hashtable, h);
             }
         }
-        if (reqsplit.length == query){
-            if(reqsplit[second].length() == 9){
+        if (reqsplit.length == query) {
+            if (reqsplit[second].length() == id) {
                 h.getHeap()[h.getIndex(Integer.parseInt(reqsplit[second]))].printBooks();
-            }
-            else if(reqsplit[second].length() == 6){
+            } else if (reqsplit[second].length() == bookCode) {
                 System.out.println(hashtable.GetBook(reqsplit[second]).getReader().getId());
-            }else {
-                Person p = h.getMax();
-                System.out.println(p.getName() + " with " + p.getNumOfBooks() + " books" );
+            } else {
+                Subscription p = h.getMax();
+                System.out.println(p.getName() + "(" + p.getId() +  ") with " + p.getNumOfBooks() + " books");
             }
+        }else {
+            System.out.println("Something's not right, please try again. Note the spaces and spelling in the request");
         }
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter max number of subscription in library :");

@@ -1,13 +1,13 @@
 public class Heap {
-    private Person[] heap;
+    private Subscription[] heap;
     //current size of occupied places in the heap
     private int currSize;
 
     // Constructor. building a heap with given length. currSize initialized to 0.
     public Heap(int heapSize){
-        heap= new Person[heapSize];
+        heap= new Subscription[heapSize];
     }
-    public Person[] getHeap() {
+    public Subscription[] getHeap() {
         return heap;
     }
     // Input: i: an array index
@@ -30,14 +30,14 @@ public class Heap {
     public int right(int i){
         return 2*i + 2;
     }
-    public Person getMax(){
+    public Subscription getMax(){
         return heap[0];
     }
 
     // Input: list: a list to add to the heap
-    // Output: adds list to the heap and corrects the order to keep it minimum heap by calling heapIncreaseKey()
-    // Running Time: O(1) for adding the list to array + O(log n) for heapIncreseKey = O(log n)
-    public void add(Person p){
+    // Output: adds subscription to the heap and corrects the order to keep it max heap by calling heapIncreaseKey()
+    // Running Time: O(1) for adding the subscription to array + O(log n) for heapIncreaseKey = O(log n)
+    public void add(Subscription p){
         heap[currSize] = p;
         if(currSize < heap.length){
             currSize += 1;
@@ -62,7 +62,7 @@ public class Heap {
     // Running Time: O(log n) where n = heap-size[A]
     public void heapIncreaseKey(int i){
         while (i > 0 && heap[parent(i)].getNumOfBooks() < heap[i].getNumOfBooks()){
-            Person temp = heap[i];
+            Subscription temp = heap[i];
             heap[i] = heap[parent(i)];
             heap[parent(i)] = temp;
             i = parent(i);
@@ -70,8 +70,8 @@ public class Heap {
     }
 
     // Input: none
-    // Output: data of the root removed
-    // Running Time: O(1) for removing and replacing with the next node + O(log n) for heapify = O(log n)
+    // Output: data of index removed
+    // Running Time: O(1) for removing + O(log n) for heapify = O(log n)
     public void Delete(int index){
         heap[index]= heap[currSize];
         heap[currSize]= null;
@@ -95,7 +95,7 @@ public class Heap {
             max = r;
         }
         if (max != i){
-            Person temp = heap[i];
+            Subscription temp = heap[i];
             heap[i] = heap[max];
             heap[max] = temp;
             heapify(max);

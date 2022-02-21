@@ -8,7 +8,7 @@ public class LinkedListBooks {
         Node next;
         Node prev;
 
-        // Constructor to create a new node - Next initialized to null
+        // Constructor to create a new node - Next, prev initialized to null
         Node(Book b) {
             data = b;
             next = null;
@@ -29,33 +29,37 @@ public class LinkedListBooks {
         Node new_node = new Node(data);
 
         // If the Linked List is empty, make the new node as head
-        if (this.head == null) {
-            this.head = new_node;
-        }
-        else {
+        if (this.head != null) {
             // insert the new node at the start
             new_node.next = this.head;
             this.head.prev = new_node;
         }
+        this.head = new_node;
     }
-    public void remove(Book data){
+
+    // Input: data: data for removed node
+    // Output: search and removes the input node
+    // Running Time: O(n) where n current size of list
+    public void remove(Book data) {
         Node temp = this.head;
-
-        //2. create two variables: found - to track
-        //   search, idx - to track current index
-        int found = 0;
-        int i = 0;
-
-        //3. if the temp node is not null check the
-        //   node value with searchValue, if found
-        //   update variables and break the loop, else
-        //   continue searching till temp node is not null
-        while (temp != null) {
-            if (temp.next.data.equals(data)) {
-                temp.next = temp.next.next;
-                temp.next.prev = temp;
+        //if first node
+        if (temp.data.equals(data)) {
+            if (temp.next == null) {
+                this.head = null;
             }
+            temp.next.prev = temp.prev;
+            this.head = temp.next;
+        } else {
             temp = temp.next;
+            while (temp != null) {
+                if (temp.data.equals(data)) {
+                    temp.prev.next = temp.next;
+                    if (temp.next != null) {
+                        temp.next.prev = temp.prev;
+                    }
+                    temp = temp.next;
+                }
+            }
         }
     }
 
@@ -83,7 +87,7 @@ public class LinkedListBooks {
         //   update variables and break the loop, else
         //   continue searching till temp node is not null
         while (temp != null) {
-            if (temp.data.getCode() == id) {
+            if (temp.data.getCode().equals(id)) {
                 return temp.data;
             }
             temp = temp.next;

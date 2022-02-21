@@ -1,21 +1,25 @@
 public class Book {
     private String code;
-    private Person reader;
+    private Subscription reader;
 
+    //constructor
     public Book(String code) {
         this.code = code;
         this.reader = null;
     }
 
-    public void setReader(Person reader) {
+    //O(1)
+    public void setReader(Subscription reader) {
         this.reader = reader;
     }
 
+    //O(1)
     public String getCode() {
         return code;
     }
 
-    public Person getReader() {
+    //O(1)
+    public Subscription getReader() {
         return reader;
     }
 }

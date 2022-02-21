@@ -1,23 +1,27 @@
-public class Person {
+public class Subscription {
     private String name;
     private int id;
     private LinkedListBooks books;
     private int numOfBooks;
 
     //Constructor
-    public Person(String name,int id) {
+    public Subscription(String name, int id) {
         this.name = name;
         this.id = id;
         this.numOfBooks=0;
     }
-
+    //O(1)
     public int getNumOfBooks() {
         return numOfBooks;
     }
+    //O(1)
     public String getName() {
         return name;
     }
-    public int getId() {return id; }
+    //O(1)
+    public int getId() {
+        return id;
+    }
 
 
     //methods
@@ -39,16 +43,25 @@ public class Person {
         }
     }
 
-    public void checkinBook(Book book, Hashtable hashtable) {
+    public void checkinBook(Book book, Hashtable hashtable, Heap heap) {
         books.remove(book);
+        numOfBooks -= 1;
+        heap.heapify(heap.getIndex(id));
         hashtable.GetBook(book.getCode()).setReader(null);
     }
 
     public void printBooks(){
-        LinkedListBooks.Node temp = books.head;
-        while (temp!= null){
-            System.out.println(temp.data.getCode());
-            temp= temp.next;
+        if(numOfBooks == 0 ){
+            System.out.println("There are no books for this subscription");
+        }
+        else {
+            System.out.println("Books for this subscription: ");
+            LinkedListBooks.Node temp = books.head;
+            while (temp != null) {
+                System.out.print(temp.data.getCode() + ", ");
+                temp = temp.next;
+            }
+            System.out.println();
         }
     }
 }
