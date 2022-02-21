@@ -1,6 +1,6 @@
 public class Subscription {
-    private String name;
-    private int id;
+    private final String name;
+    private final int id;
     private LinkedListBooks books;
     private int numOfBooks;
 

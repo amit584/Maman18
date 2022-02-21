@@ -1,5 +1,5 @@
 public class Book {
-    private String code;
+    private final String code;
     private Subscription reader;
 
     //constructor

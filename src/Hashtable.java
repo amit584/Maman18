@@ -1,5 +1,5 @@
 public class Hashtable {
-    private int size = 10000;
+    private final int size = 10000;
     private LinkedListBooks[] table;
 
     //constructor - set size of table and all to null
@@ -18,8 +18,8 @@ public class Hashtable {
             return null;
         }
         else {
-            Book book = table[hash].getBook(id);
-            return book;
+            return table[hash].getBook(id);
+
         }
     }
 
@@ -27,7 +27,7 @@ public class Hashtable {
     // Output: returns an integer value for the input id
     // Running Time: O(1)
     public int hash(String id){
-        String str = id.substring(0,2).toLowerCase();;
+        String str = id.substring(0,2).toLowerCase();
         int place = str.charAt(0)-'a'+1;
         int res = 0;
         if(place >= 10){
